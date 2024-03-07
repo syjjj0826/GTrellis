@@ -1,5 +1,5 @@
 # Header for class com_azavea_gdal_GDALWarp
-cd to directory: ./gdal-warp-bindings-gw
+cd to directory: ./gdal-warp-bindings
 # transform GDALWarp.java to GDALWarp.class
 run command: javac -encoding utf8 com/azavea/gdal/GDALWarp.java
 # create com_azavea_gdal_GDALWarp.h
