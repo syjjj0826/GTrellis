@@ -21,7 +21,7 @@ Due to issues running the `geotrellis.raster.gdal.*` module in a Windows environ
 
 **Java version :** jdk1.8.0_202
 
-**Gdal version :** gdal_381_mapserver_801_release_msvc2017_x64（/src/gdalwarp-bindings-win64/src/gdal-warp-bindings-dll/Libs` contains a duplicate set of files.）
+**Gdal version :** gdal_381_mapserver_801_release_msvc2017_x64
 
-**Boost version** **:** 1.69.0 
+**Boost version :** 1.69.0 
 
