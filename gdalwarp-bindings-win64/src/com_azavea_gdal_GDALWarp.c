@@ -17,12 +17,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>
-#if defined(__APPLE__)
-#include <arpa/inet.h>
-#define htobe16(x) htons(x)
-#define htobe32(x) htonl(x)
-#define htobe64(x) htonll(x)
-#elif defined(__MINGW32__)
+
+
 #include <stdint.h>
 #include <winsock2.h>
 #define htobe16(x) htons(x)
@@ -36,11 +32,8 @@ uint64_t htobe64(uint64_t x) // Never tested
     p1[0] = htonl(p2[1]);
     p1[1] = htonl(p2[0]);
     return retval;
-}
-#else
-// #include <endian.h>
-#include <protable_endians.h>  // Revised by ShawnGoGO@syjjj0826 at 2024-03-05 11:52:45
-#endif
+} 
+// #include <endian.h>   // Revised by ShawnGoGO@syjjj0826 at 2024-03-07 16:11:22
 
 #include <gdal.h>
 #include <cpl_conv.h>
@@ -522,7 +515,7 @@ JNIEXPORT jint JNICALL Java_com_azavea_gdal_GDALWarp_get_1data(JNIEnv *env, jobj
         for (int i = 0; i <= length - sizeof(uint16_t); i += sizeof(uint16_t))
         {
             // uint16_t *ptr = (uint16_t *)(data + i);
-            u_short* ptr = (u_short*)((u_short*)data + i);  // Revised by ShawnGoGO@syjjj0826 at 2024-03-05 11:53:58
+            uint16_t* ptr = (uint16_t*)((uint8_t*)data + i); // Revised by ShawnGoGO@syjjj0826 at 2024-03-07 16:10:58
             *ptr = htobe16(*ptr);
         }
         break;
@@ -534,7 +527,7 @@ JNIEXPORT jint JNICALL Java_com_azavea_gdal_GDALWarp_get_1data(JNIEnv *env, jobj
         for (int i = 0; i <= length - sizeof(uint32_t); i += sizeof(uint32_t))
         {
             // uint32_t *ptr = (uint32_t *)(data + i);
-            u_long* ptr = (u_long*)((u_long*)data + i);  // Revised by ShawnGoGO@syjjj0826 at 2024-03-05 11:54:16
+            uint32_t *ptr = (uint32_t *)((uint8_t*)data + i); // Revised by ShawnGoGO@syjjj0826 at 2024-03-07 16:12:12
             *ptr = htobe32(*ptr);
         }
         break;
@@ -542,8 +535,8 @@ JNIEXPORT jint JNICALL Java_com_azavea_gdal_GDALWarp_get_1data(JNIEnv *env, jobj
     case com_azavea_gdal_GDALWarp_GDT_CFloat64:
         for (int i = 0; i <= length - sizeof(uint64_t); i += sizeof(uint64_t))
         {
-            // uint64_t *ptr = (uint64_t *)(data + i);
-            uint64_t* ptr = (uint64_t*)((uint64_t*)data + i);  // Revised by ShawnGoGO@syjjj0826 at 2024-03-05 11:54:43
+            uint64_t *ptr = (uint64_t *)((uint8_t*)data + i);
+            // uint64_t* ptr = (uint64_t*)(data + i); // Revised by ShawnGoGO@syjjj0826 at 2024-03-07 16:12:20
             *ptr = htobe64(*ptr);
         }
     }
