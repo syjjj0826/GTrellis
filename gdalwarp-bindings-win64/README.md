@@ -10,7 +10,7 @@ Due to issues running the `geotrellis.raster.gdal.*` module in a Windows environ
 
 * `/dll` contains the compiled `gdalwarp_bindings-win64.dll`.
 
-* `/jar`, there is a packaged `gdal-warp-bindings-win.jar`, intended for use in a Windows environment only. If you need to package other versions, please pay attention to changing the .dll file name in `GDALWarp.java`.
+* `/jar`, there is a packaged `gdal-warp-bindings-win64_3.8.0_debug.jar`, intended for use in a Windows environment only. If you need to package other versions, please pay attention to changing the .dll file name in `GDALWarp.java`.
 * `/src/gdal-warp-bindings-dll` is the VS 2022 project file used to compile `gdalwarp_bindings-win64.dll`.
 * `/src/gdal-warp-bindings-dll/Libs` includes the necessary dependency files (except Java). Remember to download related dependencies.
 * `/src/main/BuildHeader.txt` records the command executed to generate `com_azavea_gdal_GDALWarp.h`.
